@@ -11,8 +11,8 @@ import Header from "./header";
 // Modal
 import ModalItem from "./modal";
 // Skeletons
-import TrailSkeleton from "./Skeleton/trail-skeleton";
-import LiftItemSkeleton from "./Skeleton/lift-item-skeleton";
+import TrailSkeleton from "./skeleton/trail-skeleton";
+import LiftItemSkeleton from "./skeleton/lift-item-skeleton";
 
 export {
     LiftItem,

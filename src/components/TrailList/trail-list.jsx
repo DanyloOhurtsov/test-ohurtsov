@@ -1,5 +1,5 @@
 import React from "react";
-import TrailSkeleton from "../Skeleton/trail-skeleton";
+import TrailSkeleton from "../skeleton/trail-skeleton";
 import TrailItem from "./trail-item";
 
 const TrailList = ({ data }) => {

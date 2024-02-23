@@ -1,5 +1,5 @@
 import LiftItem from "./lift-item";
-import LiftItemSkeleton from "../Skeleton/lift-item-skeleton";
+import LiftItemSkeleton from "../skeleton/lift-item-skeleton";
 
 const LiftList = ({ get_data, filter, handleOpen }) => {
     const { loading, error, data } = get_data;
