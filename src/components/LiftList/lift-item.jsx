@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./cn-components/ui/button";
+import { Button } from "../cn-components/ui/button";
 import { FaRegEdit } from "react-icons/fa";
 
 const LiftItem = ({ lift, handleOpen }) => {

@@ -1,22 +1,13 @@
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { STATUS_TYPE } from "../variables/variables";
 
-const style = {
-    position: "absolute",
-    top: "0",
-    right: "0",
-    width: "50%",
-    height: "100%",
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
-};
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { Button } from "@mui/material";
+
+import { STATUS_TYPE } from "../variables/variables";
+import TrailList from "./TrailList/trail-list";
+import { useModifyLiftStatus } from "../hooks/useMutations";
 
 const ModalItem = ({ modalOpen, setModalOpen }) => {
     const handleClose = () => {
@@ -24,11 +15,16 @@ const ModalItem = ({ modalOpen, setModalOpen }) => {
     };
     const { item, isOpen } = modalOpen;
 
+    const { modifyLiftStatus, loading } = useModifyLiftStatus();
+
     const { handleSubmit } = useForm();
     const [selectedItem, setSelectedItem] = useState(item.status);
     const filterButtons = STATUS_TYPE;
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = () => {
+        modifyLiftStatus({ itemId: item.id, itemStatus: selectedItem });
+        handleClose();
+    };
 
     return (
         <div>
@@ -38,12 +34,10 @@ const ModalItem = ({ modalOpen, setModalOpen }) => {
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
             >
-                <Box
-                    sx={{ ...style, width: 400 }}
-                    className="flex flex-col justify-between"
-                >
+                <Box className="flex flex-col justify-between w-1/2 h-full border-2 border-inherit p-6 absolute top-0 right-0 bg-white">
                     <form
                         onSubmit={handleSubmit(onSubmit)}
+                        onReset={handleClose}
                         className="flex flex-col justify-between items-center h-full"
                     >
                         <div className="flex flex-col gap-4 items-center">
@@ -73,7 +67,23 @@ const ModalItem = ({ modalOpen, setModalOpen }) => {
                                 </option>
                             ))}
                         </select>
-                        
+                        <TrailList data={item} />
+                        <div className=" flex justify-between items-center w-full px-24">
+                            <Button
+                                type={"reset"}
+                                variant={"contained"}
+                                color={"warning"}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                type={"submit"}
+                                variant={"contained"}
+                                color={"success"}
+                            >
+                                {loading ? "Loading..." : "Submit"}
+                            </Button>
+                        </div>
                     </form>
                 </Box>
             </Modal>

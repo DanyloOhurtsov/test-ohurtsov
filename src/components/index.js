@@ -1,11 +1,27 @@
-import LiftList from "./lift-list";
-import LiftItem from "./lift-item";
+// LiftList
+import LiftList from "./LiftList/lift-list";
+import LiftItem from "./LiftList/lift-item";
+// TrailList
+import TrailList from "./TrailList/trail-list";
+import TrailItem from "./TrailList/trail-item";
+// Filter
 import Filter from "./filter";
+// Header
 import Header from "./header";
+// Modal
+import ModalItem from "./modal";
+// Skeletons
+import TrailSkeleton from "./Skeleton/trail-skeleton";
+import LiftItemSkeleton from "./Skeleton/lift-item-skeleton";
 
 export {
     LiftItem,
     LiftList,
     Filter,
-    Header
-}
+    Header,
+    TrailItem,
+    TrailList,
+    ModalItem,
+    TrailSkeleton,
+    LiftItemSkeleton,
+};

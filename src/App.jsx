@@ -1,16 +1,16 @@
+import { useState } from "react";
+
 import { ApolloProvider, useQuery } from "@apollo/client";
+
 import { GET_ALL_LIFTS } from "./variables/variables";
 import { clientMy } from "./hooks/apolloClient";
-import { Header, LiftList } from "./components";
-import { useState } from "react";
-import ModalItem from "./components/modal";
+import { Header, LiftList, ModalItem } from "./components";
 
 const App = () => {
     const [selectedItem, setSelectedItem] = useState("ALL");
     const [modalOpen, setModalOpen] = useState({ isOpen: false, item: {} });
 
     const data = useQuery(GET_ALL_LIFTS);
-    console.log(data);
 
     return (
         <div className=" container w-full p-8">

@@ -1,33 +1,18 @@
-export const useMutations = ({ itemId, itemStatus }) => {
-    const [data, setData] = useState();
-    const [loading, setLoading] = useState();
+import { useMutation } from "@apollo/client";
+import { MODIFY_LIFT_STATUS } from "../variables/variables";
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await fetch(
-                    "https://thingproxy.freeboard.io/fetch/https://current--danylo-ohurtsovs-team.apollographos.net/graphql",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            query: "query {allLifts {id, name}}",
-                            mutation
-                        }),
-                    }
-                );
-                const data = await response.json();
-                setData(data.data);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-            }
+export const useModifyLiftStatus = () => {
+    const [mutate, { loading, error }] = useMutation(MODIFY_LIFT_STATUS);
+
+    const modifyLiftStatus = async ({ itemId, itemStatus }) => {
+        try {
+            await mutate({
+                variables: { id: itemId, status: itemStatus },
+            });
+        } catch (error) {
+            console.log("Error:", error);
         }
+    };
 
-        fetchData();
-    }, []);
-
-    return { data, loading };
+    return { modifyLiftStatus, loading, error };
 };

@@ -6,7 +6,6 @@ const Filter = ({props}) => {
     const filterButtons = FILTER_STATUS_TYPE;
 
     const change = (e) => {
-        console.log(e.target.value);
         setSelectedItem(e.target.value)
     };
 

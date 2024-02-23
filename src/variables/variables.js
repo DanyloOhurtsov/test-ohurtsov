@@ -1,12 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const STATUS_TYPE = ["OPEN", "HOLD", "CLOSED"];
-export const FILTER_STATUS_TYPE = [
-    "ALL",
-    "OPEN", 
-    "HOLD", 
-    "CLOSED", 
-];
+export const FILTER_STATUS_TYPE = ["ALL", "OPEN", "HOLD", "CLOSED"];
 
 export const GET_ALL_LIFTS = gql`
     {
@@ -20,6 +15,17 @@ export const GET_ALL_LIFTS = gql`
                 name
                 status
             }
+        }
+    }
+`;
+
+export const MODIFY_LIFT_STATUS = gql`
+    mutation ModifyLiftStatus($id: ID!, $status: LiftStatus!) {
+        setLiftStatus(id: $id, status: $status) {
+            id
+            name
+            status
+            elevationGain
         }
     }
 `;
